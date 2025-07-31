@@ -1,0 +1,13 @@
+version: 2
+sources:
+  - name: STANDARDISED
+    database: GM_SF_DBT_PROJECT_DEMO_LANDING_DB
+    schema: STANDARDISED
+    tables:
+        - name: raw_pos_order_detail
+        - name: raw_pos_order_header
+        - name: raw_pos_truck
+        - name: raw_pos_menu        
+        - name: raw_pos_franchise
+        - name: raw_pos_location
+        - name: raw_customer_customer_loyalty

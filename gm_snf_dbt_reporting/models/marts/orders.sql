@@ -32,16 +32,16 @@ SELECT
     oh.order_tax_amount,
     oh.order_discount_amount,
     oh.order_total
-FROM {{ ref('gm_snf_dbt_demo','raw_pos_order_detail') }} od
-JOIN {{ ref('gm_snf_dbt_demo','raw_pos_order_header') }} oh
+FROM {{ source('STANDARDISED','RAW_POS_ORDER_DETAIL') }} od
+JOIN {{ source('STANDARDISED','raw_pos_order_header') }} oh
     ON od.order_id = oh.order_id
-JOIN {{ ref('gm_snf_dbt_demo','raw_pos_truck') }} t
+JOIN {{ source('STANDARDISED','raw_pos_truck') }} t
     ON oh.truck_id = t.truck_id
-JOIN {{ ref('gm_snf_dbt_demo','raw_pos_menu') }} m
+JOIN {{ source('STANDARDISED','raw_pos_menu') }} m
     ON od.menu_item_id = m.menu_item_id
-JOIN {{ ref('gm_snf_dbt_demo','raw_pos_franchise') }} f
+JOIN {{ source('STANDARDISED','raw_pos_franchise') }} f
     ON t.franchise_id = f.franchise_id
-JOIN {{ ref('gm_snf_dbt_demo','raw_pos_location') }} l
+JOIN {{ source('STANDARDISED','raw_pos_location') }} l
     ON oh.location_id = l.location_id
-LEFT JOIN {{ ref('gm_snf_dbt_demo','raw_customer_customer_loyalty') }} cl
+LEFT JOIN {{ source('STANDARDISED','raw_customer_customer_loyalty') }} cl
     ON oh.customer_id = cl.customer_id

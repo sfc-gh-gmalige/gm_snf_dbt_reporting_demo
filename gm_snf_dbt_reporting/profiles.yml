@@ -9,3 +9,4 @@ gm_snf_dbt_reporting:
       schema: GCC_REPORTING
       account: ''
       user: ''
+      threads : 8
