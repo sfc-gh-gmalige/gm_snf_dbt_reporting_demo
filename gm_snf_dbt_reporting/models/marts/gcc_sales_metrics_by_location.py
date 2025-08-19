@@ -8,9 +8,9 @@ def model(dbt, session):
     Uses raw_pos models as sources instead of tb_101 directly.
     """
     # Get tables using dbt's ref function to reference the raw_pos models
-    locations_df = dbt.source('STANDARDISED','raw_pos_location')
-    trucks_df = dbt.source('STANDARDISED','raw_pos_truck')
-    orders_df = dbt.source('STANDARDISED','raw_pos_order_header')
+    locations_df = dbt.source('silver_source','RAW_POS_LOCATION')
+    trucks_df = dbt.source('silver_source','RAW_POS_TRUCK')
+    orders_df = dbt.source('silver_source','RAW_POS_ORDER_HEADER')
     
     # Join locations with trucks to get truck counts by location
     location_trucks = (

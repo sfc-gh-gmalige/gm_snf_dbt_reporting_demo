@@ -1,0 +1,13 @@
+version: 2
+sources:
+  - name: silver_source
+    database: GM_SF_DBT_PROJECT_DEMO_LANDING_DB
+    schema: STANDARDISED
+    tables:
+        - name: RAW_POS_ORDER_DETAIL
+        - name: RAW_POS_ORDER_HEADER
+        - name: RAW_POS_TRUCK
+        - name: RAW_POS_MENU        
+        - name: RAW_POS_FRANCHISE
+        - name: RAW_POS_LOCATION
+        - name: RAW_CUSTOMER_CUSTOMER_LOYALTY

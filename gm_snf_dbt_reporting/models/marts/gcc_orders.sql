@@ -1,4 +1,3 @@
-
 SELECT 
     oh.order_id,
     oh.truck_id,
@@ -12,8 +11,8 @@ SELECT
     t.country,
     t.franchise_flag,
     t.franchise_id,
-    f.first_name AS franchisee_first_name,
-    f.last_name AS franchisee_last_name,
+  f.first_name AS franchisee_first_name,
+  f.last_name AS franchisee_last_name,
     l.location_id,
     cl.customer_id,
     cl.first_name,
@@ -32,16 +31,16 @@ SELECT
     oh.order_tax_amount,
     oh.order_discount_amount,
     oh.order_total
-FROM {{ source('STANDARDISED','RAW_POS_ORDER_DETAIL') }} od
-JOIN {{ source('STANDARDISED','raw_pos_order_header') }} oh
+FROM {{ source('silver_source','RAW_POS_ORDER_DETAIL') }} od
+JOIN {{ source('silver_source','RAW_POS_ORDER_HEADER') }} oh
     ON od.order_id = oh.order_id
-JOIN {{ source('STANDARDISED','raw_pos_truck') }} t
+JOIN {{ source('silver_source','RAW_POS_TRUCK') }} t
     ON oh.truck_id = t.truck_id
-JOIN {{ source('STANDARDISED','raw_pos_menu') }} m
+JOIN {{ source('silver_source','RAW_POS_MENU') }} m
     ON od.menu_item_id = m.menu_item_id
-JOIN {{ source('STANDARDISED','raw_pos_franchise') }} f
-    ON t.franchise_id = f.franchise_id
-JOIN {{ source('STANDARDISED','raw_pos_location') }} l
+JOIN {{ source('silver_source','RAW_POS_FRANCHISE') }} f
+ ON t.franchise_id = f.franchise_id
+JOIN {{ source('silver_source','RAW_POS_LOCATION') }} l
     ON oh.location_id = l.location_id
-LEFT JOIN {{ source('STANDARDISED','raw_customer_customer_loyalty') }} cl
+LEFT JOIN {{ source('silver_source','RAW_CUSTOMER_CUSTOMER_LOYALTY') }} cl
     ON oh.customer_id = cl.customer_id
